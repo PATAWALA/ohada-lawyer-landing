@@ -1,5 +1,6 @@
-﻿import { Calendar, ArrowRight } from "lucide-react";
+﻿import { Calendar, ArrowRight, MessageCircle } from "lucide-react";
 import MagneticButton from "./MagneticButton";
+import Link from "next/link";
 
 export default function FinalCTA() {
   return (
@@ -17,19 +18,23 @@ export default function FinalCTA() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-          <MagneticButton
-            icon={<Calendar className="w-5 h-5" />}
-            className="!rounded-none px-10 py-5 text-base shadow-md"
-          >
-            Réserver mon diagnostic (15 min)
-          </MagneticButton>
+          <Link href="/contact">
+            <MagneticButton
+              icon={<Calendar className="w-5 h-5" />}
+              className="!rounded-none px-10 py-5 text-base shadow-md"
+            >
+              Réserver mon diagnostic (15 min)
+            </MagneticButton>
+          </Link>
 
           <a
-            href="mailto:contact@cabinet-ohada.com"
-            className="inline-flex items-center gap-2 text-slate-300 font-medium hover:text-teal-400 transition-colors group/cta"
+            href="https://wa.me/225XXXXXXXXXX" // Remplacer par le vrai numéro
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-green-600 text-white px-8 py-5 text-base font-semibold shadow-md hover:bg-green-700 transition-colors"
           >
-            Échanger avec un associé
-            <ArrowRight className="w-5 h-5 group-hover/cta:translate-x-1 transition-transform" />
+            <MessageCircle className="w-5 h-5" />
+            Échanger sur WhatsApp
           </a>
         </div>
       </div>
