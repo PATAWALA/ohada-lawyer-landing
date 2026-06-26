@@ -21,11 +21,9 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo structuré */}
         <Link href="/" className="flex items-center gap-3 group">
-          {/* Monogramme */}
           <div className="w-8 h-8 bg-slate-900 flex items-center justify-center text-white font-bold text-sm">
             C
           </div>
-          {/* Texte */}
           <div className="flex flex-col">
             <span className="text-[10px] font-bold tracking-[0.2em] text-slate-400 uppercase leading-none">
               Cabinet
@@ -54,14 +52,16 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* CTA */}
+        {/* CTA Desktop – redirige vers /contact */}
         <div className="hidden md:block">
-          <MagneticButton
-            icon={<Calendar className="w-4 h-4" />}
-            className="!rounded-none px-6 py-2.5 text-sm shadow-md ml-6"
-          >
-            Prendre RDV
-          </MagneticButton>
+          <Link href="/contact">
+            <MagneticButton
+              icon={<Calendar className="w-4 h-4" />}
+              className="!rounded-none px-6 py-2.5 text-sm shadow-md ml-6"
+            >
+              Prendre RDV
+            </MagneticButton>
+          </Link>
         </div>
 
         {/* Burger mobile */}
@@ -88,12 +88,15 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          <MagneticButton
-            icon={<Calendar className="w-4 h-4" />}
-            className="!rounded-none w-full mt-2"
-          >
-            Prendre RDV
-          </MagneticButton>
+          {/* CTA Mobile – redirige vers /contact */}
+          <Link href="/contact" onClick={() => setMobileOpen(false)}>
+            <MagneticButton
+              icon={<Calendar className="w-4 h-4" />}
+              className="!rounded-none w-full mt-2"
+            >
+              Prendre RDV
+            </MagneticButton>
+          </Link>
         </div>
       )}
     </header>

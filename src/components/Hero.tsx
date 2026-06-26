@@ -1,6 +1,7 @@
 ﻿import Image from "next/image";
 import { Calendar, ArrowRight } from "lucide-react";
 import MagneticButton from "./MagneticButton";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -38,12 +39,14 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <MagneticButton
-              icon={<Calendar className="w-5 h-5" />}
-              className="!rounded-none px-8 py-4 text-base shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
-            >
-              Planifier un diagnostic (15 min)
-            </MagneticButton>
+            <Link href="/contact">
+              <MagneticButton
+                icon={<Calendar className="w-5 h-5" />}
+                className="!rounded-none px-8 py-4 text-base shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+              >
+                Planifier un diagnostic (15 min)
+              </MagneticButton>
+            </Link>
 
             <a
               href="#services"

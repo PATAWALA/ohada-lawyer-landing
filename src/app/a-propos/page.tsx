@@ -1,6 +1,6 @@
 // src/app/a-propos/page.tsx
 import Image from "next/image";
-import { Award, User, ArrowRight, Building2, Scale, Globe, BookOpen, FileCheck, Briefcase, GraduationCap, MapPin } from "lucide-react";
+import { Award, User, ArrowRight, Building2, Scale, Globe, BookOpen, FileCheck, Briefcase, GraduationCap, Phone, Mail, MessageCircle } from "lucide-react";
 
 export const metadata = {
   title: "À propos – Cabinet OHADA",
@@ -49,14 +49,25 @@ export default function AboutPage() {
               des affaires internationales) et de l&apos;École de Formation du Barreau
               de Paris, je suis également arbitre agréé auprès de la CCJA.
             </p>
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 text-teal-700 font-semibold hover:text-teal-800 transition-colors group/cta"
-            >
-              <User className="w-5 h-5" />
-              Prendre rendez-vous
-              <ArrowRight className="w-4 h-4 group-hover/cta:translate-x-1 transition-transform" />
-            </a>
+            <div className="flex flex-wrap items-center gap-4">
+              <a
+                href="/contact"
+                className="inline-flex items-center gap-2 text-teal-700 font-semibold hover:text-teal-800 transition-colors group/cta"
+              >
+                <User className="w-5 h-5" />
+                Prendre rendez-vous
+                <ArrowRight className="w-4 h-4 group-hover/cta:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href="https://wa.me/225XXXXXXXXXX" // Remplacer par le vrai numéro WhatsApp
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-green-600 text-white px-4 py-2 text-sm font-semibold shadow-md hover:bg-green-700 transition-colors"
+              >
+                <MessageCircle className="w-5 h-5" />
+                WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -68,7 +79,6 @@ export default function AboutPage() {
             Mon parcours
           </h2>
           <div className="relative">
-            {/* Ligne verticale */}
             <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-slate-200 transform md:-translate-x-px" />
 
             {[
@@ -110,10 +120,8 @@ export default function AboutPage() {
               },
             ].map((item, index) => (
               <div key={index} className={`relative flex flex-col md:flex-row gap-6 mb-12 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                {/* Point sur la ligne */}
                 <div className="absolute left-4 md:left-1/2 top-0 w-3 h-3 bg-teal-700 border-2 border-white shadow transform -translate-x-1/2" />
 
-                {/* Contenu */}
                 <div className={`ml-10 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
                   <div className={`inline-flex items-center gap-2 bg-white border border-slate-200 px-3 py-1 text-xs font-semibold text-teal-700 mb-2`}>
                     <item.icon className="w-3 h-3" />
@@ -212,24 +220,83 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* CTA FINAL */}
+      {/* SECTION CONTACT – FORMULAIRE + WHATSAPP */}
       <div className="py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-slate-900 mb-4">
+        <div className="max-w-5xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-slate-900 text-center mb-4">
             Discutons de votre projet
           </h2>
-          <p className="text-slate-500 text-lg mb-8">
-            Prenez rendez-vous pour un diagnostic stratégique confidentiel et
-            commencez à sécuriser vos ambitions en Afrique.
+          <p className="text-center text-slate-500 text-lg mb-12 max-w-2xl mx-auto">
+            Prenez rendez-vous pour un diagnostic stratégique confidentiel et commencez à sécuriser vos ambitions en Afrique.
           </p>
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-700 to-royal-900 text-white px-8 py-4 text-base font-semibold shadow-md hover:shadow-lg transition-shadow"
-          >
-            <User className="w-5 h-5" />
-            Prendre rendez-vous
-            <ArrowRight className="w-5 h-5" />
-          </a>
+
+          <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+            {/* Formulaire de contact */}
+            <div className="bg-slate-50 border border-slate-200 p-8 shadow-sm">
+              <h3 className="text-xl font-bold text-slate-900 mb-6">Envoyez-nous un message</h3>
+              <form className="space-y-5">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1">Nom complet</label>
+                  <input type="text" id="name" name="name" className="w-full border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-teal-700 transition-colors" placeholder="Votre nom" />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1">Email</label>
+                  <input type="email" id="email" name="email" className="w-full border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-teal-700 transition-colors" placeholder="votre@email.com" />
+                </div>
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-1">Téléphone</label>
+                  <input type="tel" id="phone" name="phone" className="w-full border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-teal-700 transition-colors" placeholder="+225 XX XX XX XX" />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-1">Message</label>
+                  <textarea id="message" name="message" rows={4} className="w-full border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-teal-700 transition-colors resize-none" placeholder="Décrivez votre besoin juridique..."></textarea>
+                </div>
+                <button type="submit" className="w-full bg-gradient-to-r from-teal-700 to-royal-900 text-white px-6 py-3 font-semibold text-sm shadow-md hover:shadow-lg transition-shadow flex items-center justify-center gap-2">
+                  <Mail className="w-4 h-4" />
+                  Envoyer le message
+                </button>
+              </form>
+            </div>
+
+            {/* Bloc WhatsApp + Contact direct */}
+            <div className="flex flex-col justify-center space-y-8">
+              <div className="bg-green-50 border border-green-200 p-8 shadow-sm">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-green-600 flex items-center justify-center">
+                    <MessageCircle className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900">WhatsApp</h3>
+                </div>
+                <p className="text-slate-600 text-sm mb-6">
+                  Échangez directement avec Maître Koné ou son équipe pour une réponse rapide.
+                </p>
+                <a
+                  href="https://wa.me/225XXXXXXXXXX"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-green-600 text-white px-6 py-3 font-semibold text-sm shadow-md hover:bg-green-700 transition-colors w-full justify-center"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  Discuter sur WhatsApp
+                </a>
+              </div>
+
+              <div className="bg-slate-50 border border-slate-200 p-8 shadow-sm">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-gradient-to-br from-teal-700 to-royal-900 flex items-center justify-center">
+                    <Phone className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900">Appelez-nous</h3>
+                </div>
+                <p className="text-slate-600 text-sm mb-4">
+                  Disponible du lundi au vendredi, de 8h à 18h.
+                </p>
+                <a href="tel:+22500000000" className="text-teal-700 font-bold text-xl hover:text-teal-800 transition-colors">
+                  +225 00 00 00 00
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
