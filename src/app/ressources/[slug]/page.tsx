@@ -2,6 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { articles } from "@/data/articles";
 import { Clock, Calendar, ArrowLeft, Share2 } from "lucide-react";
+import { markdownToHtml } from "@/lib/markdown";
 import type { Metadata } from "next";
 
 interface Props {
@@ -22,6 +23,9 @@ export default async function ArticlePage({ params }: Props) {
   const { slug } = await params;
   const article = articles.find((a) => a.slug === slug);
   if (!article) notFound();
+
+  // Convertir le Markdown en HTML
+  const contentHtml = markdownToHtml(article.content || "");
 
   return (
     <main className="pt-28 pb-20 bg-white">
@@ -73,19 +77,8 @@ export default async function ArticlePage({ params }: Props) {
           {article.title}
         </h1>
 
-        {/* Contenu formaté avec des styles Tailwind directs */}
-        <div
-          className="[&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:mt-10 [&_h2]:mb-4
-            [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-slate-900 [&_h3]:mt-8 [&_h3]:mb-3
-            [&_p]:text-slate-700 [&_p]:leading-relaxed [&_p]:mb-4
-            [&_strong]:text-slate-900
-            [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_ul]:mb-4
-            [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2 [&_ol]:mb-4
-            [&_li]:text-slate-700
-            [&_blockquote]:border-l-4 [&_blockquote]:border-teal-700 [&_blockquote]:bg-slate-50 [&_blockquote]:p-4 [&_blockquote]:mb-6 [&_blockquote]:italic [&_blockquote]:text-slate-600
-            [&_code]:bg-slate-100 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-sm [&_code]:text-slate-800"
-          dangerouslySetInnerHTML={{ __html: article.content || "" }}
-        />
+        {/* Contenu HTML converti depuis le Markdown */}
+        <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
 
         <div className="mt-12 pt-8 border-t border-slate-200 flex items-center justify-between">
           <a
