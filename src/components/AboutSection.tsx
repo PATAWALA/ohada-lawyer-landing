@@ -10,7 +10,7 @@ export default function AboutSection() {
           <div className="w-72 h-72 lg:w-[26rem] lg:h-[26rem] overflow-hidden border-4 border-slate-200 shadow-2xl">
             <Image
               src="/images/portrait.jpg"
-              alt="Portrait de l'avocat"
+              alt="Portrait de Maître Abdoulaye Koné"
               width={600}
               height={600}
               className="object-cover w-full h-full"
@@ -31,20 +31,21 @@ export default function AboutSection() {
               Votre partenaire juridique
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
-              Maître [Nom de l&apos;Avocat]
+              Maître Abdoulaye Koné
             </h2>
           </div>
 
           <div className="space-y-4 text-slate-600 text-lg leading-relaxed">
             <p>
-              Avocat au Barreau de [Ville], spécialiste du droit des affaires
-              OHADA depuis plus de 15 ans. J’accompagne les dirigeants et
-              investisseurs dans la sécurisation de leurs opérations en Afrique,
-              avec une approche alliant rigueur technique et vision stratégique.
+              Avocat au Barreau d&apos;Abidjan, spécialiste du droit des affaires
+              OHADA depuis 18 ans. J&apos;accompagne les dirigeants et investisseurs
+              dans la sécurisation de leurs opérations en Afrique, avec une
+              approche alliant rigueur technique et vision stratégique.
             </p>
             <p>
-              Diplômé de [Université], formé à l’arbitrage international (CCJA),
-              je mets mon expertise au service de votre croissance.
+              Diplômé de l&apos;Université Paris 1 Panthéon-Sorbonne (Master 2
+              Droit des affaires internationales) et arbitre agréé auprès de la
+              CCJA, je mets mon expertise au service de votre croissance.
             </p>
           </div>
 

@@ -12,7 +12,32 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Cabinet OHADA – Sécurisation juridique d’excellence",
-  description: "Avocat d’affaires spécialisé en droit OHADA : droit des sociétés, investissements transfrontaliers, conformité et arbitrage. Diagnostic stratégique offert.",
+  description:
+    "Avocat d’affaires spécialisé en droit OHADA : droit des sociétés, investissements transfrontaliers, conformité et arbitrage. Diagnostic stratégique offert.",
+  openGraph: {
+    title: "Cabinet OHADA – Sécurisation juridique d’excellence",
+    description:
+      "Maître Abdoulaye Koné, avocat au Barreau d'Abidjan, sécurise vos investissements et vos contrats sous la juridiction OHADA. Diagnostic stratégique offert.",
+    url: "https://www.cabinet-ohada.com",
+    siteName: "Cabinet OHADA",
+    images: [
+      {
+        url: "/images/portrait.jpg", // Image de portrait utilisée comme og:image
+        width: 800,
+        height: 800,
+        alt: "Maître Abdoulaye Koné – Avocat en droit OHADA",
+      },
+    ],
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cabinet OHADA – Sécurisation juridique d’excellence",
+    description:
+      "Avocat d’affaires spécialisé en droit OHADA : droit des sociétés, investissements transfrontaliers, conformité et arbitrage. Diagnostic stratégique offert.",
+    images: ["/images/portrait.jpg"],
+  },
 };
 
 export default function RootLayout({
