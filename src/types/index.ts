@@ -1,4 +1,4 @@
-export interface NavLink {
+﻿export interface NavLink {
   label: string;
   href: string;
 }
@@ -31,6 +31,8 @@ export interface Article {
   date: string;
   category: string;
   imagePlaceholder?: string;
+  content?: string;
+  imageUrl?: string;
 }
 
 export interface ShopProduct {
@@ -40,4 +42,7 @@ export interface ShopProduct {
   price: number;
   type: "book" | "kit";
   imagePlaceholder?: string;
+  longDescription?: string;
+  features?: string[];
+  imageUrl?: string;
 }

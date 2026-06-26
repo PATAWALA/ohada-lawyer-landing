@@ -1,6 +1,8 @@
-import type { Metadata } from "next";
+ï»¿import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -9,9 +11,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Cabinet OHADA – Sécurisation juridique d’excellence",
-  description:
-    "Avocat d’affaires spécialisé en droit OHADA : droit des sociétés, investissements transfrontaliers, conformité et arbitrage. Diagnostic stratégique offert.",
+  title: "Cabinet OHADA â€“ SÃ©curisation juridique dâ€™excellence",
+  description: "Avocat dâ€™affaires spÃ©cialisÃ© en droit OHADA : droit des sociÃ©tÃ©s, investissements transfrontaliers, conformitÃ© et arbitrage. Diagnostic stratÃ©gique offert.",
 };
 
 export default function RootLayout({
@@ -21,7 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={inter.variable}>
-      <body className="bg-white text-slate-900 antialiased">{children}</body>
+      <body className="bg-white text-slate-900 antialiased flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }

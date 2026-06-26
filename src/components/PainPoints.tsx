@@ -1,56 +1,74 @@
-import { ShieldAlert, Building2, Scale } from "lucide-react";
+ï»¿import { ShieldAlert, Building2, Scale, ArrowRight } from "lucide-react";
 import type { PainPoint } from "@/types";
 
 const painPoints: PainPoint[] = [
   {
     icon: "ShieldAlert",
-    title: "Insécurité contractuelle",
+    title: "InsÃ©curitÃ© contractuelle",
     description:
-      "Des clauses fragiles ou non conformes à l’Acte uniforme exposent vos accords à des contentieux ruineux.",
+      "Des clauses fragiles ou non conformes Ã  lâ€™Acte uniforme exposent vos accords Ã  des contentieux ruineux.",
   },
   {
     icon: "Building2",
-    title: "Mauvaise structuration sociétaire",
+    title: "Mauvaise structuration sociÃ©taire",
     description:
-      "Une holding mal articulée ou des statuts obsolètes freinent vos levées de fonds et votre expansion régionale.",
+      "Une holding mal articulÃ©e ou des statuts obsolÃ¨tes freinent vos levÃ©es de fonds et votre expansion rÃ©gionale.",
   },
   {
     icon: "Scale",
-    title: "Non-conformité fiscale",
+    title: "Non-conformitÃ© fiscale",
     description:
-      "Une méconnaissance des régimes OHADA et des conventions bilatérales peut entraîner des redressements lourds.",
+      "Une mÃ©connaissance des rÃ©gimes OHADA et des conventions bilatÃ©rales peut entraÃ®ner des redressements lourds.",
   },
 ];
 
 const iconMap: Record<string, React.ReactNode> = {
-  ShieldAlert: <ShieldAlert className="w-7 h-7 text-teal-700" />,
-  Building2: <Building2 className="w-7 h-7 text-teal-700" />,
-  Scale: <Scale className="w-7 h-7 text-teal-700" />,
+  ShieldAlert: <ShieldAlert className="w-7 h-7 text-white" />,
+  Building2: <Building2 className="w-7 h-7 text-white" />,
+  Scale: <Scale className="w-7 h-7 text-white" />,
 };
 
 export default function PainPoints() {
   return (
-    <section className="py-24 bg-slate-50" id="risques">
+    <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 text-center mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 text-center mb-6">
           Les 3 failles juridiques qui menacent{" "}
-          <span className="text-royal-900">votre croissance en Afrique.</span>
+          <span className="bg-gradient-to-r from-teal-700 to-royal-900 bg-clip-text text-transparent">
+            votre croissance en Afrique.
+          </span>
         </h2>
+        <p className="text-center text-slate-500 max-w-2xl mx-auto mb-16 text-lg">
+          Des risques concrets que nous transformons en leviers de sÃ©curitÃ©.
+        </p>
+
         <div className="grid md:grid-cols-3 gap-8">
-          {painPoints.map((point) => (
+          {painPoints.map((point, index) => (
             <div
               key={point.title}
-              className="bg-white rounded-2xl p-8 shadow-sm border border-slate-200/60 flex flex-col items-start gap-5 transition-shadow hover:shadow-md"
+              className="group flex flex-col bg-gradient-to-br from-teal-600/10 to-royal-900/10 border border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden relative"
             >
-              <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center">
-                {iconMap[point.icon]}
+              {/* NumÃ©ro parfaitement lisible en haut Ã  droite */}
+              <div className="absolute top-4 right-4 text-6xl font-extrabold text-slate-300 select-none leading-none">
+                {(index + 1).toString().padStart(2, '0')}
               </div>
-              <h3 className="text-xl font-semibold text-slate-900">
-                {point.title}
-              </h3>
-              <p className="text-slate-600 leading-relaxed">
-                {point.description}
-              </p>
+
+              <div className="p-8 flex flex-col gap-5 flex-1 relative z-10">
+                <div className="w-14 h-14 bg-gradient-to-br from-teal-700 to-royal-900 flex items-center justify-center">
+                  {iconMap[point.icon]}
+                </div>
+                <h3 className="text-xl font-bold text-slate-900">{point.title}</h3>
+                <p className="text-slate-600 leading-relaxed flex-1">
+                  {point.description}
+                </p>
+                <a
+                  href="#contact"
+                  className="inline-flex items-center gap-2 text-teal-700 font-semibold text-sm hover:text-teal-800 transition-colors mt-2 group/cta"
+                >
+                  Se faire accompagner
+                  <ArrowRight className="w-4 h-4 group-hover/cta:translate-x-1 transition-transform" />
+                </a>
+              </div>
             </div>
           ))}
         </div>

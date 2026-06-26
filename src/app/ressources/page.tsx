@@ -1,16 +1,21 @@
 ﻿import Image from "next/image";
-import { Clock, ArrowRight ,BookOpen} from "lucide-react";
+import { Clock, ArrowRight, BookOpen } from "lucide-react";
 import { articles } from "@/data/articles";
 
-export default function ResourcesHub() {
+export const metadata = {
+  title: "Ressources juridiques – Cabinet OHADA",
+  description: "Analyses, guides et livres blancs sur le droit des affaires OHADA.",
+};
+
+export default function RessourcesPage() {
   return (
-    <section className="py-24 bg-white">
+    <main className="pt-28 pb-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 text-center mb-6">
-          Analyses juridiques &amp; ressources stratégiques
-        </h2>
-        <p className="text-center text-slate-500 max-w-3xl mx-auto mb-16 text-lg">
-          Des publications exigeantes pour anticiper les mutations du droit des affaires en Afrique.
+        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+          Ressources juridiques
+        </h1>
+        <p className="text-slate-500 text-lg max-w-3xl mb-12">
+          Approfondissez votre maîtrise du droit OHADA avec nos publications exclusives.
         </p>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -19,7 +24,7 @@ export default function ResourcesHub() {
               key={article.slug}
               className="group bg-white border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col"
             >
-              {/* Image ou fallback */}
+              {/* Image */}
               <div className="w-full h-48 relative overflow-hidden bg-slate-100">
                 {article.imageUrl ? (
                   <Image
@@ -35,10 +40,9 @@ export default function ResourcesHub() {
                 )}
               </div>
 
-              {/* Contenu */}
               <div className="p-6 flex flex-col gap-4 flex-1">
                 <div className="flex items-center gap-3 text-xs font-medium text-slate-500">
-                  <span className="bg-slate-100 px-2 py-1 border border-slate-200">
+                  <span className="bg-slate-100 border border-slate-200 px-2 py-1">
                     {article.category}
                   </span>
                   <span className="flex items-center gap-1">
@@ -54,9 +58,9 @@ export default function ResourcesHub() {
                   </time>
                 </div>
 
-                <h3 className="text-lg font-bold text-slate-900 group-hover:text-teal-700 transition-colors">
+                <h2 className="text-lg font-bold text-slate-900 group-hover:text-teal-700 transition-colors">
                   {article.title}
-                </h3>
+                </h2>
 
                 <p className="text-slate-600 text-sm leading-relaxed flex-1">
                   {article.excerpt}
@@ -74,6 +78,6 @@ export default function ResourcesHub() {
           ))}
         </div>
       </div>
-    </section>
+    </main>
   );
 }

@@ -1,5 +1,6 @@
-import Navbar from "@/components/Navbar";
+﻿import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import AboutSection from "@/components/AboutSection";
 import PainPoints from "@/components/PainPoints";
 import Services from "@/components/Services";
 import Methodology from "@/components/Methodology";
@@ -13,6 +14,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <AboutSection />
         <PainPoints />
         <Services />
         <Methodology />

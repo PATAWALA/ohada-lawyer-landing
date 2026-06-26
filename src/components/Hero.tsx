@@ -1,50 +1,57 @@
-import { ArrowRight, ChevronDown } from "lucide-react";
+Ôªøimport Image from "next/image";
+import { Calendar, ArrowRight } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 
 export default function Hero() {
   return (
-    <section className="pt-28 pb-20 lg:pt-36 lg:pb-28 bg-white">
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-        {/* Left content */}
-        <div className="space-y-8">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-slate-900">
-            SÈcurisez vos investissements{" "}
-            <span className="text-royal-900">et blindez vos contrats</span> sous
-            la juridiction OHADA.
+    <section className="relative min-h-screen flex items-center bg-slate-900 overflow-hidden">
+      {/* Image architecturale en arri√®re-plan */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80"
+          alt=""
+          fill
+          className="object-cover object-center opacity-60"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/90 via-slate-900/70 to-slate-900/80" />
+      </div>
+
+      {/* Contenu centr√© */}
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-6 text-center">
+        <div className="space-y-10">
+          {/* Ligne d√©corative centr√©e */}
+          <div className="w-16 h-px bg-teal-400 mx-auto" />
+
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-white">
+            S√©curisez vos investissements
+            <br />
+            <span className="bg-gradient-to-r from-teal-400 to-teal-200 bg-clip-text text-transparent">
+              et blindez vos contrats
+            </span>{" "}
+            sous la juridiction OHADA.
           </h1>
-          <p className="text-lg md:text-xl text-slate-600 max-w-2xl">
-            Architecture juridique sur-mesure et arbitrage díaffaires pour les
+
+          <p className="text-lg text-slate-300 max-w-xl mx-auto leading-relaxed">
+            Architecture juridique sur‚Äëmesure et arbitrage d‚Äôaffaires pour les
             entreprises en pleine expansion.
           </p>
-          <div className="flex flex-wrap items-center gap-5">
-            <MagneticButton icon={<ArrowRight className="w-5 h-5" />}>
-              Planifier un diagnostic stratÈgique (15 min)
+
+          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <MagneticButton
+              icon={<Calendar className="w-5 h-5" />}
+              className="!rounded-none px-8 py-4 text-base shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+            >
+              Planifier un diagnostic (15 min)
             </MagneticButton>
+
             <a
               href="#services"
-              className="inline-flex items-center gap-2 text-slate-700 font-medium hover:text-teal-700 transition-colors"
+              className="inline-flex items-center gap-2 text-slate-300 font-medium hover:text-teal-400 transition-colors underline underline-offset-4 decoration-slate-500 hover:decoration-teal-400"
             >
-              <ChevronDown className="w-4 h-4" />
-              DÈcouvrir nos expertises
+              <ArrowRight className="w-4 h-4" />
+              D√©couvrir nos expertises
             </a>
-          </div>
-        </div>
-
-        {/* Right visual */}
-        <div className="relative hidden lg:flex justify-center">
-          <div className="w-80 h-96 rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 flex flex-col items-center justify-center p-6 relative shadow-sm">
-            <div className="absolute top-4 left-4 w-6 h-6 border-t-4 border-l-4 border-teal-700/40 rounded-tl-lg" />
-            <div className="absolute top-4 right-4 w-6 h-6 border-t-4 border-r-4 border-teal-700/40 rounded-tr-lg" />
-            <div className="absolute bottom-4 left-4 w-6 h-6 border-b-4 border-l-4 border-teal-700/40 rounded-bl-lg" />
-            <div className="absolute bottom-4 right-4 w-6 h-6 border-b-4 border-r-4 border-teal-700/40 rounded-br-lg" />
-            <div className="w-24 h-24 rounded-full bg-slate-200 flex items-center justify-center mb-6">
-              <span className="text-slate-500 text-sm font-medium">Portrait</span>
-            </div>
-            <p className="text-slate-500 text-sm text-center leading-relaxed">
-              Architecture juridique
-              <br />
-              díexcellence
-            </p>
           </div>
         </div>
       </div>
