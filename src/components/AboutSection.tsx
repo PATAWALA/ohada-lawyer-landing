@@ -5,9 +5,9 @@ export default function AboutSection() {
   return (
     <section id="about" className="py-24 bg-white scroll-mt-28">
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-        {/* Photo – format carré strict, bordures nettes */}
+        {/* Photo */}
         <div className="relative flex justify-center">
-          <div className="w-72 h-72 lg:w-[26rem] lg:h-[26rem] overflow-hidden border-4 border-slate-200 shadow-2xl">
+          <div className="relative w-72 h-72 lg:w-[26rem] lg:h-[26rem] overflow-hidden border-4 border-slate-200 shadow-2xl">
             <Image
               src="/images/portrait.jpg"
               alt="Portrait de Maître Abdoulaye Koné"
@@ -16,11 +16,11 @@ export default function AboutSection() {
               className="object-cover w-full h-full"
               priority
             />
-          </div>
-          {/* Badge "Expert" en coin, carré */}
-          <div className="absolute -bottom-3 -right-3 bg-teal-700 text-white px-5 py-2 shadow-lg flex items-center gap-2">
-            <Scale className="w-5 h-5" />
-            <span className="text-sm font-semibold">Expert OHADA</span>
+            {/* Badge intégré dans le conteneur de l'image */}
+            <div className="absolute bottom-0 right-0 bg-teal-700 text-white px-3 py-1.5 shadow-lg flex items-center gap-2">
+              <Scale className="w-4 h-4 md:w-5 md:h-5" />
+              <span className="text-xs md:text-sm font-semibold">Expert OHADA</span>
+            </div>
           </div>
         </div>
 
@@ -49,7 +49,6 @@ export default function AboutSection() {
             </p>
           </div>
 
-          {/* Bouton "En savoir plus" – style secondaire, coins droits */}
           <a
             href="/a-propos"
             className="inline-flex items-center gap-3 bg-white border-2 border-slate-300 text-slate-800 font-semibold px-8 py-4 shadow-sm hover:border-teal-700 hover:text-teal-700 transition-all duration-300 group"
