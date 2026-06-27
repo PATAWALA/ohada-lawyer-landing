@@ -40,7 +40,10 @@ export default function PainPoints() {
       const sectionTop = sectionRef.current.offsetTop;
       const sectionHeight = sectionRef.current.offsetHeight;
       const scrollY = window.scrollY;
-      const progress = (scrollY - sectionTop) / (sectionHeight - window.innerHeight);
+      const progress = Math.min(
+        1,
+        Math.max(0, (scrollY - sectionTop) / (sectionHeight - window.innerHeight))
+      );
 
       const cards = sectionRef.current.querySelectorAll<HTMLDivElement>(".sticky-pain-card");
       cards.forEach((card, index) => {
@@ -48,17 +51,23 @@ export default function PainPoints() {
         const cardEnd = (index + 1) / painPoints.length;
 
         if (progress >= cardStart && progress <= cardEnd) {
+          // Carte active : pleinement visible, au centre
           card.style.opacity = "1";
           card.style.transform = "translateY(0) scale(1)";
-          card.style.zIndex = String(20 + index);
-        } else if (progress > cardEnd) {
-          card.style.opacity = "0.2";
-          card.style.transform = "translateY(-10px) scale(0.98)";
+          card.style.zIndex = String(30 + index);
+          card.style.pointerEvents = "auto";
+        } else if (progress < cardStart) {
+          // Carte encore en dessous : poussée vers le bas, invisible
+          card.style.opacity = "0";
+          card.style.transform = "translateY(120px) scale(0.9)";
           card.style.zIndex = String(10 + index);
+          card.style.pointerEvents = "none";
         } else {
-          card.style.opacity = "0.2";
-          card.style.transform = "translateY(10px) scale(0.98)";
+          // Carte déjà passée : remonte vers le haut, invisible
+          card.style.opacity = "0";
+          card.style.transform = "translateY(-120px) scale(0.9)";
           card.style.zIndex = String(10 + index);
+          card.style.pointerEvents = "none";
         }
       });
     };
@@ -78,12 +87,12 @@ export default function PainPoints() {
         {painPoints.map((point, index) => (
           <div
             key={point.title}
-            className="sticky-pain-card border border-slate-200 bg-white shadow-2xl p-8 md:p-12 transition-all duration-500 ease-out flex flex-col gap-5"
+            className="sticky-pain-card border border-slate-200 bg-white shadow-2xl p-8 md:p-12 transition-all duration-700 ease-out flex flex-col gap-5"
             style={{
               position: "sticky",
-              top: `${12 + index * 8}%`,
-              opacity: index === 0 ? 1 : 0.2,
-              transform: index === 0 ? "none" : "translateY(10px) scale(0.98)",
+              top: `${10 + index * 8}%`,
+              opacity: index === 0 ? 1 : 0,
+              transform: index === 0 ? "none" : "translateY(120px) scale(0.9)",
               zIndex: 10 + index,
             }}
           >
@@ -93,7 +102,6 @@ export default function PainPoints() {
             </div>
 
             <div className="relative z-10 flex flex-col gap-5 flex-1">
-              {/* Icône et titre */}
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 bg-gradient-to-br from-teal-700 to-royal-900 flex items-center justify-center">
                   {iconMap[point.icon]}
