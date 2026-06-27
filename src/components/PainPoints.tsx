@@ -1,4 +1,7 @@
-﻿import { ShieldAlert, Building2, Scale, ArrowRight } from "lucide-react";
+﻿"use client";
+
+import { useEffect, useRef } from "react";
+import { ShieldAlert, Building2, Scale, ArrowRight } from "lucide-react";
 import type { PainPoint } from "@/types";
 
 const painPoints: PainPoint[] = [
@@ -23,55 +26,97 @@ const painPoints: PainPoint[] = [
 ];
 
 const iconMap: Record<string, React.ReactNode> = {
-  ShieldAlert: <ShieldAlert className="w-7 h-7 text-white" />,
-  Building2: <Building2 className="w-7 h-7 text-white" />,
-  Scale: <Scale className="w-7 h-7 text-white" />,
+  ShieldAlert: <ShieldAlert className="w-8 h-8 text-white" />,
+  Building2: <Building2 className="w-8 h-8 text-white" />,
+  Scale: <Scale className="w-8 h-8 text-white" />,
 };
 
 export default function PainPoints() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const sectionTop = sectionRef.current.offsetTop;
+      const sectionHeight = sectionRef.current.offsetHeight;
+      const scrollY = window.scrollY;
+      const progress = (scrollY - sectionTop) / (sectionHeight - window.innerHeight);
+
+      const cards = sectionRef.current.querySelectorAll<HTMLDivElement>(".sticky-pain-card");
+      cards.forEach((card, index) => {
+        const cardStart = index / painPoints.length;
+        const cardEnd = (index + 1) / painPoints.length;
+
+        if (progress >= cardStart && progress <= cardEnd) {
+          card.style.opacity = "1";
+          card.style.transform = "translateY(0) scale(1)";
+          card.style.zIndex = String(20 + index);
+        } else if (progress > cardEnd) {
+          card.style.opacity = "0.2";
+          card.style.transform = "translateY(-10px) scale(0.98)";
+          card.style.zIndex = String(10 + index);
+        } else {
+          card.style.opacity = "0.2";
+          card.style.transform = "translateY(10px) scale(0.98)";
+          card.style.zIndex = String(10 + index);
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 text-center mb-6">
-          Les 3 failles juridiques qui menacent{" "}
-          <span className="bg-gradient-to-r from-teal-700 to-royal-900 bg-clip-text text-transparent">
-            votre croissance en Afrique.
-          </span>
-        </h2>
-        <p className="text-center text-slate-500 max-w-2xl mx-auto mb-16 text-lg">
-          Des risques concrets que nous transformons en leviers de sécurité.
-        </p>
+    <section
+      ref={sectionRef}
+      className="relative bg-white"
+      style={{ height: `${painPoints.length * 100}vh` }}
+    >
+      <div className="max-w-4xl mx-auto px-6 relative h-full">
+        {painPoints.map((point, index) => (
+          <div
+            key={point.title}
+            className="sticky-pain-card border border-slate-200 bg-white shadow-2xl p-8 md:p-12 transition-all duration-500 ease-out flex flex-col gap-5"
+            style={{
+              position: "sticky",
+              top: `${12 + index * 8}%`,
+              opacity: index === 0 ? 1 : 0.2,
+              transform: index === 0 ? "none" : "translateY(10px) scale(0.98)",
+              zIndex: 10 + index,
+            }}
+          >
+            {/* Numéro de la faille */}
+            <div className="absolute top-4 right-6 text-8xl font-extrabold text-slate-100 select-none leading-none">
+              {(index + 1).toString().padStart(2, "0")}
+            </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {painPoints.map((point, index) => (
-            <div
-              key={point.title}
-              className="group flex flex-col bg-gradient-to-br from-teal-600/10 to-royal-900/10 border border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden relative"
-            >
-              {/* Numéro parfaitement lisible en haut à droite */}
-              <div className="absolute top-4 right-4 text-6xl font-extrabold text-slate-300 select-none leading-none">
-                {(index + 1).toString().padStart(2, '0')}
-              </div>
-
-              <div className="p-8 flex flex-col gap-5 flex-1 relative z-10">
+            <div className="relative z-10 flex flex-col gap-5 flex-1">
+              {/* Icône et titre */}
+              <div className="flex items-center gap-4">
                 <div className="w-14 h-14 bg-gradient-to-br from-teal-700 to-royal-900 flex items-center justify-center">
                   {iconMap[point.icon]}
                 </div>
-                <h3 className="text-xl font-bold text-slate-900">{point.title}</h3>
-                <p className="text-slate-600 leading-relaxed flex-1">
-                  {point.description}
-                </p>
-                <a
-                  href="#contact"
-                  className="inline-flex items-center gap-2 text-teal-700 font-semibold text-sm hover:text-teal-800 transition-colors mt-2 group/cta"
-                >
-                  Se faire accompagner
-                  <ArrowRight className="w-4 h-4 group-hover/cta:translate-x-1 transition-transform" />
-                </a>
+                <h3 className="text-2xl md:text-3xl font-bold text-slate-900">
+                  {point.title}
+                </h3>
               </div>
+
+              <p className="text-lg text-slate-600 leading-relaxed max-w-2xl">
+                {point.description}
+              </p>
+
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 text-teal-700 font-semibold text-sm hover:text-teal-800 transition-colors group/cta"
+              >
+                Se faire accompagner
+                <ArrowRight className="w-4 h-4 group-hover/cta:translate-x-1 transition-transform" />
+              </a>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );
